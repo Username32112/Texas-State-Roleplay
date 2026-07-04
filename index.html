@@ -13,13 +13,12 @@
 
   <nav>
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="rules.html">Rules</a>
+    <a href="departments.html">Departments</a>
     <a href="apply.html">Apply</a>
-    <a href="whyus.html">Why Us</a>
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <h1>Texas State Roleplay</h1>
   <p>🇺🇸 Realistic Texas Law Enforcement Roleplay</p>
@@ -29,9 +28,68 @@
   </a>
 </section>
 
+<!-- LIVE SERVER STATS -->
+<section class="page">
+
+  <h1>Live Server Status</h1>
+
+  <div class="card" id="serverCard">
+    <h2>🟡 Loading Server Data...</h2>
+    <p>Players: <b id="players">-</b></p>
+    <p>Staff Online: <b id="staff">-</b></p>
+    <p>Queue: <b id="queue">-</b></p>
+    <p>Vehicles: <b id="vehicles">-</b></p>
+  </div>
+
+</section>
+
 <footer>
   <p>© 2026 Texas State Roleplay</p>
 </footer>
+
+<script>
+async function loadStats() {
+  try {
+
+    /* 🔵 ERLC API (replace with your real endpoint) */
+    const erlc = await fetch("https://YOUR_ERLC_API_ENDPOINT");
+    const erlcData = await erlc.json();
+
+    /* 🟣 Melony API (replace with your real endpoint) */
+    const melony = await fetch("https://YOUR_MELONY_API_ENDPOINT");
+    const melonyData = await melony.json();
+
+    // Example mapping (YOU may need to adjust keys)
+    document.getElementById("players").innerText =
+      erlcData.players ?? "0";
+
+    document.getElementById("queue").innerText =
+      erlcData.queue ?? "0";
+
+    document.getElementById("vehicles").innerText =
+      erlcData.vehicles ?? "0";
+
+    document.getElementById("staff").innerText =
+      melonyData.staffOnline ?? "0";
+
+    document.getElementById("serverCard").innerHTML =
+      `
+      <h2>🟢 Server Live</h2>
+      <p>Players: <b>${erlcData.players ?? 0}</b></p>
+      <p>Staff Online: <b>${melonyData.staffOnline ?? 0}</b></p>
+      <p>Queue: <b>${erlcData.queue ?? 0}</b></p>
+      <p>Vehicles: <b>${erlcData.vehicles ?? 0}</b></p>
+      `;
+      
+  } catch (err) {
+    document.getElementById("serverCard").innerHTML =
+      "<h2>🔴 Server Offline / API Error</h2>";
+  }
+}
+
+loadStats();
+setInterval(loadStats, 10000);
+</script>
 
 </body>
 </html>
