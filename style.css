@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0f0f0f;
+  background: #0b0b0b;
   color: white;
 }
 
@@ -9,15 +9,19 @@ body {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 15px 25px;
   background: #111;
   position: sticky;
   top: 0;
+  z-index: 100;
 }
 
 .logo {
-  color: #ff3b3b;
+  color: #f5c542;
   font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 1px;
 }
 
 /* NAV */
@@ -25,52 +29,89 @@ nav a {
   color: white;
   margin: 0 10px;
   text-decoration: none;
+  font-size: 14px;
 }
 
 nav a:hover {
-  color: #ff3b3b;
+  color: #f5c542;
 }
 
 /* HERO */
 .hero {
-  height: 80vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   text-align: center;
 
-  background: linear-gradient(to right, #8b0000, #1a1a1a, #002868);
+  background: linear-gradient(
+    to right,
+    #2b1b0f,
+    #f5c542,
+    #000000
+  );
 }
 
 .hero h1 {
-  font-size: 50px;
+  font-size: 55px;
+  margin: 0;
 }
 
 .hero p {
   font-size: 18px;
+  margin-top: 10px;
+  opacity: 0.9;
 }
 
+/* BUTTON */
 .btn {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #ff3b3b;
-  color: white;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #f5c542;
+  color: black;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.2s;
 }
 
 .btn:hover {
-  background: darkred;
+  background: #d4a017;
 }
 
-/* PAGE SECTIONS */
+/* PAGE LAYOUT */
 .page {
-  padding: 60px;
+  padding: 60px 20px;
   text-align: center;
 }
 
+.page h1 {
+  color: #f5c542;
+  margin-bottom: 30px;
+}
+
+/* CARDS (for Why Us page) */
+.card {
+  background: #151515;
+  margin: 15px auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;
+  border-left: 4px solid #f5c542;
+  text-align: left;
+}
+
+.card h2 {
+  margin: 0;
+  color: #f5c542;
+}
+
+.card p {
+  opacity: 0.85;
+}
+
+/* LIST */
 ul {
   list-style: none;
   padding: 0;
@@ -85,4 +126,17 @@ footer {
   text-align: center;
   padding: 20px;
   background: #111;
+  margin-top: 40px;
+  opacity: 0.8;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 35px;
+  }
+
+  .card {
+    width: 90%;
+  }
 }
